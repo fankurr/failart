@@ -16,6 +16,8 @@
                     this.toggle = true;
                     this.vid.play();
                     this.searchMarker.style.display = "none"; // Sembunyikan elemen "Search For Marker"
+                    this.vid.object3DMap.mesh.material.opacity = 0; // Set opacity video menjadi 0
+                    this.vid.setAttribute('animation', 'property: material.opacity; to: 1; dur: 1000; easing: linear'); // Tambahkan animasi opacity video
                 }.bind(this));
 
                 marker.addEventListener('markerLost', function () {
@@ -75,7 +77,6 @@
             cursor="fuse: false; rayOrigin: mouse;"
             id="markerA"
         >
-            <!-- Tambahkan animasi pada elemen video -->
             <a-video
                 src="#vid"
                 position="0 0.1 0"
@@ -83,10 +84,6 @@
                 width="1" 
                 height="1.25" 
                 class="clickable"
-                animation__fade="property: material.opacity; 
-                from: 0; to: 1; 
-                dur: 1000; easing: linear; 
-                startEvents: markerFound"
             ></a-video>
         </a-marker>
 
