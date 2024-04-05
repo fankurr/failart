@@ -10,17 +10,18 @@
             init: function () {
                 var marker = this.el;
                 this.vid = document.querySelector("#vid");
+                this.searchMarker = document.querySelector("#searchMarker");
 
                 marker.addEventListener('markerFound', function () {
                     this.toggle = true;
                     this.vid.play();
-                    document.querySelector("#scanner").setAttribute('visible', 'false'); // Sembunyikan laser beam scanner ketika marker terdeteksi
+                    this.searchMarker.style.display = "none"; // Sembunyikan elemen "Search For Marker"
                 }.bind(this));
 
                 marker.addEventListener('markerLost', function () {
                     this.toggle = false;
                     this.vid.pause();
-                    document.querySelector("#scanner").setAttribute('visible', 'true'); // Tampilkan kembali laser beam scanner ketika marker hilang
+                    this.searchMarker.style.display = "block"; // Tampilkan kembali elemen "Search For Marker"
                 }.bind(this));
             },
         });
@@ -51,14 +52,18 @@
             ></video>
         </a-assets>
 
-        <!-- Laser beam scanner -->
-        <a-entity id="scanner" 
-                  position="0 0 -3"
-                  animation__position="property: position; to: 0 0 3; loop: true; dur: 2000"
-                  animation__opacity="property: material.opacity; from: 0; to: 0.5; loop: true; dir: alternate; dur: 1000"
-                  geometry="primitive: cylinder; height: 3; radius: 0.05"
-                  material="color: red; transparent: true; opacity: 0.5">
-        </a-entity>
+        <!-- Elemen "Search For Marker" -->
+        <div id="searchMarker" 
+            style="position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 0px; 
+            border-radius: 10px; 
+            display: block;">
+            <p style="font-size: 20px; text-align: center; margin: 0;">Search For Marker...</p>
+        </div>
 
         <a-marker
             type="pattern"
