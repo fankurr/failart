@@ -28,20 +28,15 @@
     </script>
     <style>
         @keyframes scanner {
-            0% {
-                background: linear-gradient(to bottom, transparent, rgba(255,0,0,0.5), transparent);
-                background-size: 100% 10px;
-                background-position: center top;
+            0%, 100% {
+                background: linear-gradient(to right, transparent, rgba(255,0,0,0.5), transparent);
+                background-size: 10px 100%;
+                background-position: left center;
             }
             50% {
-                background: linear-gradient(to bottom, transparent, rgba(255,0,0,0.5), transparent);
-                background-size: 100% 10px;
-                background-position: center bottom;
-            }
-            100% {
-                background: linear-gradient(to bottom, transparent, rgba(255,0,0,0.5), transparent);
-                background-size: 100% 10px;
-                background-position: center top;
+                background: linear-gradient(to right, transparent, rgba(255,0,0,0.5), transparent);
+                background-size: 10px 100%;
+                background-position: right center;
             }
         }
 
@@ -78,11 +73,11 @@
         <!-- Elemen "Search For Marker" dengan animasi scanner -->
         <div id="searchMarker" 
             style="position: fixed; 
-            top: 0; 
-            left: 50%; 
-            width: 2px; 
-            height: 100%; 
-            background: linear-gradient(to bottom, transparent, rgba(255,0,0,0.5), transparent); 
+            top: 50%; 
+            left: 0; 
+            width: 100%; 
+            height: 2px; 
+            background: linear-gradient(to right, transparent, rgba(255,0,0,0.5), transparent); 
             display: block;
             animation: scanner 1.5s infinite;">
         </div>
