@@ -68,15 +68,21 @@
         </div>
 
         <a-marker
-            preset='custom'
             type="pattern"
-            videohandler
-            url="assets/marker.patt"
+            preset="custom"
             raycaster="objects: .clickable"
             emitevents="true"
             cursor="fuse: false; rayOrigin: mouse;"
             id="markerA"
         >
+            <!-- Tidak menyertakan atribut url, AR.js akan menggunakan gambar PNG sebagai marker -->
+            <a-entity
+                geometry="primitive: plane; width: 2; height: 2;"
+                material="src: url(assets/pattern-marker.png);"
+                position="0 0 0"
+                rotation="-90 0 0"
+            ></a-entity>
+        </a-marker>
             <a-video
                 src="#vid"
                 position="0 0.1 0"
