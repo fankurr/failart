@@ -10,18 +10,17 @@
             init: function () {
                 var marker = this.el;
                 this.vid = document.querySelector("#vid");
-                this.laserBeam = document.querySelector("#laserBeam");
 
                 marker.addEventListener('markerFound', function () {
                     this.toggle = true;
                     this.vid.play();
-                    this.laserBeam.setAttribute('visible', 'false'); // Sembunyikan sinar laser saat marker ditemukan
+                    document.querySelector("#scanner").setAttribute('visible', 'false'); // Sembunyikan laser beam scanner ketika marker terdeteksi
                 }.bind(this));
 
                 marker.addEventListener('markerLost', function () {
                     this.toggle = false;
                     this.vid.pause();
-                    this.laserBeam.setAttribute('visible', 'true'); // Tampilkan kembali sinar laser saat marker hilang
+                    document.querySelector("#scanner").setAttribute('visible', 'true'); // Tampilkan kembali laser beam scanner ketika marker hilang
                 }.bind(this));
             },
         });
@@ -52,9 +51,13 @@
             ></video>
         </a-assets>
 
-        <!-- Elemen sinar laser -->
-        <a-entity id="laserBeam" visible="true" animation="property: position; to: 0 5 -10; loop: true; dur: 2000; easing: linear;">
-            <a-cylinder position="0 0 0" radius="0.01" height="10" color="red"></a-cylinder>
+        <!-- Laser beam scanner -->
+        <a-entity id="scanner" 
+                  position="0 0 -3"
+                  animation__position="property: position; to: 0 0 3; loop: true; dur: 2000"
+                  animation__opacity="property: material.opacity; from: 0; to: 0.5; loop: true; dir: alternate; dur: 1000"
+                  geometry="primitive: cylinder; height: 3; radius: 0.05"
+                  material="color: red; transparent: true; opacity: 0.5">
         </a-entity>
 
         <a-marker
